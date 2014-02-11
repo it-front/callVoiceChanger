@@ -22,7 +22,7 @@ public class MainActivity extends org.holoeverywhere.app.Activity implements
 	private static final int PICK_CONTACT = 1;
 	Button contacts;
 
-	//
+	//ht
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

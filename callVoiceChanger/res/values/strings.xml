@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">callVoiceChanger</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_about">About Us</string>
+    <string name="action_exit">Exit</string>
+
+</resources>

@@ -4,36 +4,6 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal" >
 
-    <EditText
-        android:id="@+id/speaktext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="103dp"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:inputType="textMultiLine" />
-
-    <Button
-        android:id="@+id/texttovoice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/speaktext"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="37dp"
-        android:gravity="center_horizontal"
-        android:text="Play Text" />
-
-    <TextView
-        android:id="@+id/speed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/speaktext"
-        android:text="Speed"
-        android:textSize="14sp"
-        android:textStyle="bold" />
-
     <TextView
         android:id="@+id/pitch"
         android:layout_width="wrap_content"
@@ -44,20 +14,53 @@
         android:text="Pitch"
         android:textStyle="bold" />
 
-    <SeekBar
-        android:id="@+id/seekBar2"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/speed"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/speed"
-        android:layout_marginTop="14dp" />
+        android:layout_below="@+id/texttovoice"
+        android:layout_marginTop="77dp"
+        android:layout_toLeftOf="@+id/speaktext"
+        android:text="Speed"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <SeekBar
         android:id="@+id/seekBar1"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/pitch"
-        android:layout_marginTop="15dp" />
+        android:layout_alignBottom="@+id/pitch"
+        android:layout_alignParentRight="true" />
+
+    <SeekBar
+        android:id="@+id/seekBar2"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/speed"
+        android:layout_alignLeft="@+id/seekBar1" />
+
+    <Button
+        android:id="@+id/texttovoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/speaktext"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        android:gravity="center_horizontal"
+        android:text="Play Text" />
+
+    <EditText
+        android:id="@+id/speaktext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="126dp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>

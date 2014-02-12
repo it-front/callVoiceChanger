@@ -1,14 +1,20 @@
 package com.callvoicechanger;
 
+import java.util.Locale;
+import java.util.Random;
+
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.widget.Button;
+import org.holoeverywhere.widget.EditText;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
+import android.text.StaticLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +27,10 @@ public class MainActivity extends org.holoeverywhere.app.Activity implements
 
 	private static final int PICK_CONTACT = 1;
 	Button contacts;
+
+	TextToSpeech tts;
+	Button textToVoice;
+	EditText speach;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +54,7 @@ public class MainActivity extends org.holoeverywhere.app.Activity implements
 		tabSpec.setContent(R.id.tab3);
 		tabSpec.setIndicator("Text to Speach");
 		tabHost.addTab(tabSpec);
-		
+
 		tabSpec = tabHost.newTabSpec("tag4");
 		tabSpec.setContent(R.id.tab4);
 		tabSpec.setIndicator("Playlist");
@@ -53,6 +63,32 @@ public class MainActivity extends org.holoeverywhere.app.Activity implements
 		contacts = (Button) findViewById(R.id.contactPicker);
 		contacts.setOnClickListener(this);
 
+		textToVoice = (Button) findViewById(R.id.texttovoice);
+		textToVoice.setOnClickListener(this);
+		
+		speach = (EditText) findViewById(R.id.speaktext);
+		
+		tts = new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener() {
+			
+			@Override
+			public void onInit(int status) {
+				// TODO Auto-generated method stub
+				if (status != TextToSpeech.ERROR) {
+					tts.setLanguage(Locale.US);
+				}
+			}
+		});
+
+	}
+
+	@Override
+	protected void onPause() {
+
+		if (tts != null) {
+			tts.stop();
+			tts.shutdown();
+		}
+		super.onPause();
 	}
 
 	@Override
@@ -106,16 +142,16 @@ public class MainActivity extends org.holoeverywhere.app.Activity implements
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-
+		final String speachString = speach.getText().toString();
+		
 		switch (v.getId()) {
 		case R.id.contactPicker:
 			Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
 			startActivityForResult(intent, PICK_CONTACT);
 			break;
-
-		default:
+		case R.id.texttovoice:
+			tts.speak(speachString, TextToSpeech.QUEUE_FLUSH, null);
 			break;
 		}
-
 	}
 }
